@@ -1,38 +1,197 @@
+/* App.css */
+body {
+  font-family: sans-serif; /* Choose a font you like */
+  margin: 0; /* Remove default margins */
+  background-color: #f4f4f4; /* Light background color */
+  color: #333; /* Dark text color */
+}
+
 .App {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh; /* Ensure full viewport height */
+}
+
+/* Navbar */
+.navbar {
+  background-color: #333; /* Dark navbar background */
+  color: white;
+  padding: 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo {
+  font-weight: bold;
+  font-size: 1.2rem;
+}
+
+.nav-links {
+  display: flex;
+}
+
+.nav-links a {
+  color: white;
+  text-decoration: none;
+  margin-left: 1rem;
+  padding: 0.5rem; /* Add some padding around links */
+}
+
+.nav-links a:hover {
+  background-color: rgba(255, 255, 255, 0.2); /* Subtle hover effect */
+}
+
+.search-box {
+    color: white;
+}
+
+/* Hero Section */
+.hero {
+  background-image: url('your-hero-image.jpg'); /* Replace with your image */
+  background-size: cover;
+  background-position: center;
+  color: white;
+  text-align: center;
+  padding: 5rem 0;
+}
+
+.hero-title {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+}
+
+.hero-subtitle {
+  font-size: 1.2rem;
+}
+
+/* Services Section */
+.services {
+  padding: 3rem;
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.services h2 {
+  margin-bottom: 2rem;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.service-list {
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
+  justify-content: center; /* Center the service items */
+  gap: 2rem; /* Add spacing between items */
+}
+
+.service-item {
+  background-color: white;
+  padding: 2rem;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Add a subtle shadow */
+  text-align: center; /* Center text within items */
+  width: 200px; /* Set a fixed width for the items */
+}
+
+.service-item h3 {
+  margin-bottom: 1rem;
+}
+
+.service-item button {
+  background-color: #007bff; /* Blue button */
   color: white;
+  padding: 0.8rem 1.5rem;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s; /* Smooth hover effect */
 }
 
-.App-link {
-  color: #61dafb;
+.service-item button:hover {
+  background-color: #0056b3; /* Darker blue on hover */
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+/* Create Story and Read Story */
+
+.create-story, .read-story {
+    padding: 2rem;
+    margin: 2rem auto; /* Center horizontally */
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    max-width: 800px; /* Set a maximum width */
+}
+
+.create-story h2, .read-story h2 {
+    margin-bottom: 1rem;
+}
+
+.create-story input, .create-story textarea, .read-story textarea {
+  width: calc(100% - 10px); /* Full width with padding adjustment */
+  padding: 0.5rem;
+  margin-bottom: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box; /* Include padding in width calculation */
+}
+
+.create-story button {
+    /* Style the button */
+    background-color: #007bff; /* Blue button */
+    color: white;
+    padding: 0.8rem 1.5rem;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s; /* Smooth hover effect */
+    margin-top: 10px;
+}
+
+.create-story button:hover {
+    background-color: #0056b3; /* Darker blue on hover */
+}
+
+.read-story ul {
+    list-style: none;
+    padding: 0;
+}
+
+.read-story li {
+    cursor: pointer;
+    padding: 0.5rem;
+    border-bottom: 1px solid #eee;
+}
+
+.read-story li:hover {
+    background-color: #f0f0f0;
+}
+
+.read-story p {
+    margin-bottom: 1rem;
+}
+
+/* Login */
+.login {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+}
+
+.welcome-message {
+    font-size: 2rem;
+    margin-bottom: 2rem;
+}
+
+.login-button {
+    background-color: #007bff;
+    color: white;
+    padding: 1rem 2rem;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1.2rem;
+    transition: background-color 0.3s ease;
+}
+
+.login-button:hover {
+    background-color: #0056b3;
 }
