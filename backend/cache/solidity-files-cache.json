@@ -1,0 +1,114 @@
+{
+  "_format": "hh-sol-cache-2",
+  "files": {
+    "D:\\Dev\\blocsoc\\prophesy\\StackTooDeep\\backend\\Contracts\\Ownership.sol": {
+      "lastModificationDate": 1738360897819,
+      "contentHash": "9b18c766f5deaa9022e36d27162264fc",
+      "sourceName": "Contracts/Ownership.sol",
+      "solcConfig": {
+        "version": "0.8.28",
+        "settings": {
+          "evmVersion": "paris",
+          "optimizer": {
+            "enabled": false,
+            "runs": 200
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [],
+      "versionPragmas": [
+        "^0.8.0"
+      ],
+      "artifacts": [
+        "StoryOwnership"
+      ]
+    },
+    "D:\\Dev\\blocsoc\\prophesy\\StackTooDeep\\backend\\Contracts\\pay-to-watch.sol": {
+      "lastModificationDate": 1738360969368,
+      "contentHash": "f927e2c66edd58d8ccad65140bb7c5e2",
+      "sourceName": "Contracts/pay-to-watch.sol",
+      "solcConfig": {
+        "version": "0.8.28",
+        "settings": {
+          "evmVersion": "paris",
+          "optimizer": {
+            "enabled": false,
+            "runs": 200
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [],
+      "versionPragmas": [
+        "^0.8.0"
+      ],
+      "artifacts": [
+        "PayToReadMore"
+      ]
+    },
+    "D:\\Dev\\blocsoc\\prophesy\\StackTooDeep\\backend\\Contracts\\tip.sol": {
+      "lastModificationDate": 1738361147947,
+      "contentHash": "ebd2cd3c1516e97e9d21818dee2e6b89",
+      "sourceName": "Contracts/tip.sol",
+      "solcConfig": {
+        "version": "0.8.28",
+        "settings": {
+          "evmVersion": "paris",
+          "optimizer": {
+            "enabled": false,
+            "runs": 200
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [],
+      "versionPragmas": [
+        "^0.8.0"
+      ],
+      "artifacts": [
+        "IERC20",
+        "ProphesyPlatform"
+      ]
+    }
+  }
+}
