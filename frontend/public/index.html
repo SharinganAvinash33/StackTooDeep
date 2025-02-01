@@ -26,6 +26,7 @@
     -->
     <title>React App</title>
   </head>
+  
   <body>
     <noscript>You need to enable JavaScript to run this app.</noscript>
     <div id="root"></div>
@@ -39,5 +40,47 @@
       To begin the development, run `npm start` or `yarn start`.
       To create a production bundle, use `npm run build` or `yarn build`.
     -->
+
+    <script>
+      // Fetch stories from the server and display them
+      const fetchStories = async () => {
+        const response = await fetch('http://localhost:3000/api/stories');
+        const stories = await response.json();
+        const storyList = document.getElementById('storyList');
+        storyList.innerHTML = '';
+        stories.forEach((story) => {
+          const listItem = document.createElement('li');
+          listItem.textContent = `${story.title}: ${story.content}`;
+          storyList.appendChild(listItem);
+        });
+      };
+  
+      // Submit new story to the server
+      const storyForm = document.getElementById('storyForm');
+      storyForm.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const title = document.getElementById('title').value;
+        const content = document.getElementById('content').value;
+  
+        const response = await fetch('http://localhost:5000/api/stories', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({ title, content }),
+        });
+  
+        if (response.ok) {
+          // Clear the form and refresh the story list
+          storyForm.reset();
+          fetchStories();
+        } else {
+          console.error('Failed to create story');
+        }
+      });
+  
+      // Initial fetch
+      fetchStories();
+    </script>
   </body>
 </html>

@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from 'react';
-import { ethers } from 'ethers'; // Import ethers if you're still using it for wallet connection (even with mock data)
-import { contractAbi, contractAddress } from './Constants/Constants'; // Keep these if needed
+import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
+import { ethers } from 'ethers';
 import Login from './Components/Login';
-import Home from './Components/Connected';
+import Connected from './Components/Connected';
+import CreateStory from './Components/CreateStory';
+import ReadStory from './Components/ReadStory';
 import './App.css';
 
 function App() {
@@ -54,7 +56,6 @@ function App() {
     fetchStories();
   }, []);
 
-
   async function connectToMetamask() {
     if (window.ethereum) {
       try {
@@ -75,24 +76,17 @@ function App() {
     }
   }
 
-
-
   return (
-    <div className="App">
-      {isConnected ? (
-        <div>
-          <Home 
-            account={account} 
-            provider={provider} 
-            generatePlot={generatePlot} 
-            uploadStory={uploadStory} 
-            stories={stories} 
-          />
-        </div>
-      ) : (
-        <Login connectWallet={connectToMetamask} />
-      )}
-    </div>
+    <Router>
+      <div className="App">
+        <Routes>
+          <Route path="/" element={!isConnected ? <Login connectWallet={connectToMetamask} /> : <Navigate to="/home" />} />
+          <Route path="/home" element={isConnected ? <Connected account={account} provider={provider} generatePlot={generatePlot} uploadStory={uploadStory} stories={stories} /> : <Navigate to="/" />} />
+          <Route path="/create" element={isConnected ? <CreateStory account={account} provider={provider} generatePlot={generatePlot} uploadStory={uploadStory} /> : <Navigate to="/" />} />
+          <Route path="/read" element={isConnected ? <ReadStory stories={stories} /> : <Navigate to="/" />} />
+        </Routes>
+      </div>
+    </Router>
   );
 }
 

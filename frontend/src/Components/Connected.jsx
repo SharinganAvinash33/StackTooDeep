@@ -2,6 +2,7 @@
 import React, { useState } from 'react';
 import CreateStory from './CreateStory';
 import ReadStory from './ReadStory';
+import { Link } from 'react-router-dom';
 
 function Home(props) {
   const [showCreateStory, setShowCreateStory] = useState(false);
@@ -15,11 +16,9 @@ function Home(props) {
     <div className="min-h-screen bg-white">
       <nav className="navbar">
         <div className="logo">Prophesy</div>
-        <div className="nav-links">
-          <a href="#">Home</a>
-          <a href="#">Stories</a>
-          <a href="#">Contribute</a>
-        </div>
+        <nav>
+        <Link to="/create">Create Story</Link> | <Link to="/read">Read Story</Link>
+      </nav>
         <p className="search-box">Hello {props.account}</p>
       </nav>
 
@@ -39,10 +38,11 @@ function Home(props) {
           <div className="service-item">
             <h3>Write a Story</h3>
             <button onClick={handleCreateStoryClick}>Go</button>
+            {/* <button onClick={() => window.location.href = "https://www.example.com"}>Go</button> */}
           </div>
         </div>
       </section>
-
+<a href="q"></a>
       {showCreateStory && (
         <div>
           <CreateStory generatePlot={props.generatePlot} />

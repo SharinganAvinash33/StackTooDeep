@@ -116,3 +116,69 @@ body {
 .service-item button:hover {
   background: #333;
 }
+
+/* new */
+.create-story {
+  padding: 2rem;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  margin-bottom: 2rem;
+}
+
+.input-group {
+  display: flex;
+  margin-bottom: 1rem;
+  gap: 1rem;
+}
+
+.input-group input {
+  padding: 0.5rem 1rem;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+  flex-grow: 1;
+}
+
+.button {
+  background-color: #4CAF50; /* Green */
+  border: none;
+  color: white;
+  padding: 10px 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.generated-plot {
+  margin-top: 1rem;
+  border-top: 1px solid #ccc;
+  padding-top: 1rem;
+}
+
+/* // styles.css */
+.story-interface {
+  padding: 2rem;
+}
+
+.create-story-container {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.story-layout {
+  flex-grow: 1;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  padding: 1rem;
+}
+
+.story-layout textarea {
+  width: 100%;
+  height: 100%;
+  padding: 0.5rem 1rem;
+  border: none;
+  resize: vertical;
+}

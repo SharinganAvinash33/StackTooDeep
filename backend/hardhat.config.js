@@ -10,6 +10,8 @@ module.exports = {
     sepolia: {
       url: SEPOLIA_URL,
       accounts: [PRIVATE_KEY],
-    },
+      gas: 1,
+      gasPrice: 8
+    }
   },
 };

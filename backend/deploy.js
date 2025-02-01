@@ -1,8 +1,9 @@
 const { ethers } = require("hardhat");
 
 async function main() {
-  const tip = await ethers.getContractFactory("StoryOwnership");
-  const tipping = await tip.deploy(); // Deploy the contract
+  const tip = await ethers.getContractFactory("PaymentGateway");
+  const tipping = await tip.deploy("0xa5e89442b06034cB3b4AbF6Ed0bc00D095Da0878");
+  // const tipping = await tip.deploy(); // Deploy the contract
 
   await tipping.deployed();
 
@@ -10,6 +11,6 @@ async function main() {
 }
 
 main().catch((error) => {
-  console.error(error);
+  console.error(error)
   process.exitCode = 1;
 });

@@ -1,5 +1,6 @@
 // Login.jsx (remains mostly the same)
 import React from "react";
+import './styles.css';
 
 const Login = (props) =>{
     return(
