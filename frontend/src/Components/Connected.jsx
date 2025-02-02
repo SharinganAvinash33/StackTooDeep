@@ -1,66 +1,101 @@
-// Connected.jsx (Home.jsx)
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import CreateStory from './CreateStory';
 import ReadStory from './ReadStory';
-import { Link } from 'react-router-dom';
+// import { getContract } from './utils/contract';
+import { getContract } from '../utils/Contract';
+import './styles.css';
+import Login from './Login';
+import { ethers } from 'ethers';
 
-function Home(props) {
-  const [showCreateStory, setShowCreateStory] = useState(false);
-  const [storyLayout, setStoryLayout] = useState('');
+const Home = () => {
+    const [contract, setContract] = useState(null);
+    const [provider, setProvider] = useState(null);
+    const [account, setAccount] = useState(null);
+    const [stories, setStories] = useState([]);
+    const [isConnected, setIsConnected] = useState(false);
+    const [loadingStories, setLoadingStories] = useState(false);
 
-  const handleCreateStoryClick = () => {
-    setShowCreateStory(true);
-  };
+    const connectWallet = async () => {
+        if (window.ethereum) {
+            try {
+                const provider = new ethers.BrowserProvider(window.ethereum);
+                setProvider(provider);
 
-  return (
-    <div className="min-h-screen bg-white">
-      <nav className="navbar">
-        <div className="logo">Prophesy</div>
-        <nav>
-        <Link to="/create">Create Story</Link> | <Link to="/read">Read Story</Link>
-      </nav>
-        <p className="search-box">Hello {props.account}</p>
-      </nav>
+                const signer = await provider.getSigner();
+                const address = await signer.getAddress();
+                setAccount(address);
+                setIsConnected(true);
 
-      <section className="hero">
-        <div>
-          <h1 className="hero-title">Rewarding Creativity</h1>
-          <p className="hero-subtitle">Engage in AI-Driven Story Creation</p>
+                const contract = await getContract(provider);
+                setContract(contract);
+
+                setLoadingStories(true);
+                if (contract) {
+                    try {
+                        const fetchedStories = await contract.getAllStories();
+                        setStories(fetchedStories);
+                    } catch (error) {
+                        console.error("Error fetching stories:", error);
+                    } finally {
+                        setLoadingStories(false);
+                    }
+                }
+
+            } catch (error) {
+                console.error("Error connecting to MetaMask:", error);
+            }
+        } else {
+            alert("Please install MetaMask!");
+        }
+    };
+
+    useEffect(() => {
+        connectWallet();
+    }, []);
+
+    const generatePlot = async (genre, keywords) => {
+        return new Promise((resolve) => {
+            setTimeout(() => {
+                resolve(`A thrilling ${genre} adventure involving ${keywords}.`);
+            }, 500)
+        });
+    };
+
+    const uploadStoryToBlockchain = async (cid, genre, keywords) => {
+        if (!contract) {
+            console.error("Contract not initialized!");
+            return false;
+        }
+        try {
+            const tx = await contract.createStory(cid, genre, keywords);
+            await tx.wait();
+            return true;
+        } catch (error) {
+            console.error("Error uploading to blockchain:", error);
+            return false;
+        }
+    };
+
+    return (
+        <div className="home-container">
+            {!isConnected ? (
+                <Login connectWallet={connectWallet} />
+            ) : (
+                <div>
+                    <h2>Welcome to Prophesy</h2>
+                    <CreateStory
+                        generatePlot={generatePlot}
+                        uploadStoryToBlockchain={uploadStoryToBlockchain}
+                    />
+                    {loadingStories ? (
+                        <p>Loading stories...</p>
+                    ) : (
+                        <ReadStory stories={stories} contract={contract} /> // Pass the contract here
+                    )}
+                </div>
+            )}
         </div>
-      </section>
-
-      <section className="services">
-        <h2>Get Started</h2>
-        <div className="service-list">
-          <div className="service-item">
-            <h3>Read a Story</h3>
-          </div>
-          <div className="service-item">
-            <h3>Write a Story</h3>
-            <button onClick={handleCreateStoryClick}>Go</button>
-            {/* <button onClick={() => window.location.href = "https://www.example.com"}>Go</button> */}
-          </div>
-        </div>
-      </section>
-<a href="q"></a>
-      {showCreateStory && (
-        <div>
-          <CreateStory generatePlot={props.generatePlot} />
-          <div>
-            <h3>Write Your Story Layout</h3>
-            <textarea
-              placeholder="Enter your story layout here..."
-              value={storyLayout}
-              onChange={(e) => setStoryLayout(e.target.value)}
-              rows={10}
-            />
-          </div>
-        </div>
-      )}
-
-      <ReadStory stories={props.stories} />
-    </div>
-  );
-}
+    );
+};
 
 export default Home;
